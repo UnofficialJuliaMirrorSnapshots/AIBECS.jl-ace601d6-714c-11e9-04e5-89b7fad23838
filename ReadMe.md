@@ -1,10 +1,8 @@
+<a href="https://github.com/briochemc/AIBECS.jl">
+  <img src="https://user-images.githubusercontent.com/4486578/59548598-d8fe7f80-8f94-11e9-931f-cf3532b5cc25.png" alt="logo" title="The AIBECS logo: It represents three global marine biogeochemical cycles, where each element affects the others" align="center" width="50%"/>
+</a>
 
-<img src="https://user-images.githubusercontent.com/4486578/57189839-c422db00-6f56-11e9-9e1d-26c8d9208702.png" alt="logo" title="AIBECS_logo" align="right" height="400"/>
-
-
-
-
-# AIBECS
+# AIBECS.jl
 
 *The ideal tool for exploring global marine biogeochemical cycles.*
 
