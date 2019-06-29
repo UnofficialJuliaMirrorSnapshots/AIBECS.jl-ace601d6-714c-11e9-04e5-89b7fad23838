@@ -5,8 +5,8 @@ os:
   - linux
 
 julia:
-  - 1.0
   - 1.1
+  - 1.2
   - nightly
 
 # Uncomment the following lines to allow failures on nightly julia
@@ -30,7 +30,7 @@ after_success:
 jobs:
   include:
     - stage: "Documentation"
-      julia: nightly
+      julia: 1.1
       os: linux
       before_script:
         - julia --project=docs/ -e 'using Pkg; Pkg.instantiate();

@@ -1,27 +1,24 @@
 
 # Load the circulation and grid
-const wet3d, grd, T_Circulation = Circulation.load()
+wet3D, grid, T_Circulation_unit = Circulation.load()
+T_Circulation = ustrip.(T_Circulation_unit) # strip units for now
 
 # Define useful constants and arrays
-const iwet = indices_of_wet_boxes(wet3d)
-const nb = number_of_wet_boxes(wet3d)
-const v = vector_of_volumes(wet3d, grd)
-const z = vector_of_depths(wet3d, grd)
-const ztop = vector_of_top_depths(wet3d, grd)
+iwet = indices_of_wet_boxes(wet3D)
+nb = number_of_wet_boxes(wet3D)
+v = ustrip.(vector_of_volumes(wet3D, grid)) # strip units for now
+z = ustrip.(vector_of_depths(wet3D, grid)) # strip units for now
+ztop = ustrip.(vector_of_top_depths(wet3D, grid)) # strip units for now
 # And matrices
-const DIV = buildDIV(wet3d, iwet, grd)
-const Iabove = buildIabove(wet3d, iwet)
+DIV = buildDIV(wet3D, iwet, grid)
+Iabove = buildIabove(wet3D, iwet)
 
 @testset "Circulation and grid" begin
-    @testset "wet3d" begin
-        @test wet3d isa BitArray{3}
+    @testset "wet3D" begin
+        @test wet3D isa BitArray{3}
     end
-    @testset "grd" begin
-        @test grd isa Dict
-        grd_keys = ["DYT3d", "DZT3d", "dxt"  , "ZT3d" , "DXT3d", "dzt"  , "dyt"  , "ZW3d" , "xt"   , "zt"   , "yt"]
-        @testset "has field $k" for k in grd_keys
-            @test haskey(grd, k)
-        end
+    @testset "grid" begin
+        @test grid isa OceanGrid
     end
     @testset "Transport matrix" begin
         T = T_Circulation
@@ -33,7 +30,7 @@ const Iabove = buildIabove(wet3d, iwet)
             @test norm(v) / norm(T' * v) > ustrip(upreferred(1u"Myr"))
         end
     end
-    # TODO add tests for consistency of wet3d, grid, and T
+    # TODO add tests for consistency of wet3D, grid, and T
 end
 
 @testset "Constants, vectors, and matrices types" begin
@@ -44,19 +41,19 @@ end
     end
     @testset "nb (number of wet boxes)" begin
         @test nb isa Int
-        @test nb == sum(vec(wet3d))
+        @test nb == sum(vec(wet3D))
     end
     @testset "v (vector of volumes)" begin
         @test v isa Vector{Float64}
         @test length(v) == nb
         @test all(v .≥ 0)
-        @test v == array_of_volumes(grd)[iwet]
+        @test v * u"m^3" == array_of_volumes(grid)[iwet]
     end
     @testset "z (vector of depths of center of boxes)" begin
-        @test z isa Vector{Float64}
+        @test z isa Vector{<:Real}
         @test length(z) == nb
     end
-    @test ztop isa Vector{Float64}
+    @test ztop isa Vector{<:Real}
     @test DIV isa SparseMatrixCSC
     @test Iabove isa SparseMatrixCSC
 end
