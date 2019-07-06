@@ -1,5 +1,5 @@
 <a href="https://github.com/briochemc/AIBECS.jl">
-  <img src="https://user-images.githubusercontent.com/4486578/59548598-d8fe7f80-8f94-11e9-931f-cf3532b5cc25.png" alt="logo" title="The AIBECS logo: It represents three global marine biogeochemical cycles, where each element affects the others" align="center" width="50%"/>
+  <img src="https://user-images.githubusercontent.com/4486578/60554111-8fc27400-9d79-11e9-9ca7-6d78ee89ea70.png" alt="logo" title="The AIBECS logo: It represents three global marine biogeochemical cycles, where each element affects the others" align="center" width="50%"/>
 </a>
 
 # AIBECS.jl
@@ -118,11 +118,12 @@ We emphasize that this package is under active development, so that not all the 
 
 
 
-
 ## References
 
 Please cite us of you use this package.
 The references under bibtex format are available in the [CITATION.bib](./CITATION.bib) file.
+
+Also, if you want to do research using the AIBECS, and you think I could help, do not hesitate to contact me directly (contacts on my [website](www.bpasquier.com)), I would be happy to contribute and collaborate!
 
 <img src="https://www.nsf.gov/images/logos/NSF_4-Color_bitmap_Logo.png" alt="NSF" title="NSF_logo" align="right" height="50"/>
 
